@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#101522">
+		<title>Linha de Fuga — Demo 3D</title>
+		<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+		<link rel="stylesheet" href="style.css">
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"
+				}
+			}
+		</script>
+		<script type="module" src="main.js"></script>
+	</head>
+	<body>
+		<main class="game">
+			<canvas id="scene" aria-label="Cidade 3D interativa"></canvas>
+			<div class="vignette" aria-hidden="true"></div>
+
+			<header class="topbar">
+				<a class="brand" href="#" aria-label="Linha de Fuga, início">
+					<span class="brand-mark" aria-hidden="true">L</span>
+					<span>LINHA DE FUGA<small>UM HERÓI, UMA CIDADE</small></span>
+				</a>
+				<div class="location"><span class="live-dot"></span> DISTRITO CENTRAL <span class="location-divider">/</span> 22:48</div>
+				<div class="objective"><span class="objective-icon">✳</span><span>ESCOLHA UMA MISSÃO<small>Desafios pela cidade</small></span></div>
+			</header>
+
+			<section class="stats" aria-label="Indicadores">
+				<div class="stat"><span class="stat-label">VELOCIDADE</span><strong><span id="speed">0</span><small> km/h</small></strong><div class="meter"><i id="speed-meter"></i></div></div>
+				<div class="stat"><span class="stat-label">ALTITUDE</span><strong><span id="height">0</span><small> m</small></strong></div>
+			</section>
+
+			<nav class="mission-picker" aria-label="Escolher missão">
+				<div class="picker-title">MISSÕES DISPONÍVEIS</div>
+				<button class="mission-button" data-mission="agility"><span class="mission-icon">◈</span><span>Corrida contra o tempo<small>Passe pelos pontos de controle</small></span><span class="mission-arrow">↗</span></button>
+				<button class="mission-button" data-mission="fight"><span class="mission-icon">✳</span><span>Confronto com capangas<small>Lute pela segurança do distrito</small></span><span class="mission-arrow">↗</span></button>
+				<button class="mission-button" data-mission="chase"><span class="mission-icon">➤</span><span>Perseguição<small>Alcance o veículo antes que fuja</small></span><span class="mission-arrow">↗</span></button>
+			</nav>
+
+			<section class="mission-hud" id="mission-hud" aria-live="polite" hidden>
+				<div class="mission-hud-top"><span id="mission-name">MISSÃO</span><button id="mission-cancel" type="button" aria-label="Encerrar missão">×</button></div>
+				<strong id="mission-objective">Objetivo</strong>
+				<div class="mission-progress"><i id="mission-progress"></i></div>
+				<div class="mission-details"><span id="mission-detail"></span><span id="mission-timer"></span></div>
+				<div class="fight-health" id="fight-health" hidden>VITALIDADE <span id="health-value">♥ ♥ ♥</span></div>
+			</section>
+
+			<div class="crosshair" id="crosshair" aria-hidden="true"><span></span></div>
+			<div class="notice" id="notice" role="status">CLIQUE EM UM PRÉDIO PARA LANÇAR O GANCHO</div>
+
+			<footer class="bottom-bar">
+				<div class="controls" aria-label="Controles do jogo">
+					<div class="control"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>MOVER</span></div>
+					<div class="control"><kbd>ESPAÇO</kbd><span>PULAR</span></div>
+					<div class="control"><kbd>CLIQUE</kbd><span>GANCHO</span></div>
+					<div class="control"><kbd>ESC</kbd><span>SOLTAR</span></div>
+					<div class="control fight-control"><kbd>F</kbd><span>GOLPE</span></div>
+				</div>
+				<div class="tip"><span aria-hidden="true">↗</span> Gancho nas fachadas · F para golpear durante o confronto</div>
+			</footer>
+		</main>
+	</body>
+</html>
